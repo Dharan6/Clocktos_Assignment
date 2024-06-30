@@ -1,0 +1,22 @@
+﻿
+
+#btn_1:hover{
+    background-color : red;
+    transition-duration:0.3s;
+}
+
+#offcanvasTop {
+    margin-top:50px;
+}
+
+
+/* Increase height of offcanvas */
+/*.offcanvas-top {
+    height: 80vh;*/ /* Adjust height as needed */
+    /*overflow-y: auto;*/ /* Enable vertical scrolling if content exceeds height */
+/*}*/
+/*#college{
+    color:aliceblue;
+    margin-left:10px;
+}*/
+

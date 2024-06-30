@@ -1,0 +1,209 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Clocktos_Assignment.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title><%: Page.Title %> - My ASP.NET Application</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.css" integrity="sha512-U9Y1sGB3sLIpZm3ePcrKbXVhXlnQNcuwGQJ2WjPjnp6XHqVTdgIlbaDzJXJIAuCTp3y22t+nhI4B88F/5ldjFA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="~/Content/my_custom.css" rel="stylesheet" type="text/css"/>
+
+     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+  
+</head>
+<body>
+    <form runat="server" autocomplete="off">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+            <div class="container">
+              
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item"><button class="btn btn-primary" id="btn_1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"><i class="fa-solid fa-bars"></i></button> </li>
+                        <li class="nav-item"><h3 style=" color:aliceblue; margin-left:10px ;">S.A College of Arts and Science </h3></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container body-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - S.A College of Arts and Science</p>
+            </footer>
+        </div>
+
+
+        <%--  data input form section --%>
+
+        <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel" style="height: 400px;">
+       
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasTopLabel" style="width:100% ; background-color:cornflowerblue  ">Exam Details</h5>
+      
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body " >
+
+        <asp:Label ID="successLabel" runat="server" Visible="false"></asp:Label>  <%-- to show success message --%>
+        <asp:Label ID="errorLabel" runat="server" Visible="false"></asp:Label>  <%-- to show error message --%>
+
+          <div class="mb-3">
+<asp:Label ID="Label15" runat="server" Text="Label">Degree : </asp:Label> <asp:DropDownList ID="degree_name" runat="server"></asp:DropDownList>
+       </div>
+
+          <div class="mb-3">
+<asp:Label ID="Label16" runat="server" Text="Label">Branch : </asp:Label> <asp:DropDownList ID="branch_name" runat="server"></asp:DropDownList>
+       </div>
+
+          <div class="mb-3">
+<asp:Label ID="Label17" runat="server" Text="Label">Section : </asp:Label> <asp:DropDownList ID="sec_name" runat="server"></asp:DropDownList>
+       </div>
+
+          <div class="mb-3">
+<asp:Label ID="Label18" runat="server" Text="Label">Criteria : </asp:Label> <asp:DropDownList ID="criteria_name" runat="server"></asp:DropDownList>
+       </div>
+      
+           <div class="mb-3">
+      <asp:Label ID="Label1" runat="server" Text="Label">Common for selected subjects: </asp:Label> <asp:CheckBox ID="sel_sub" runat="server" />
+             </div>
+           <div class="mb-3">
+       <asp:Label ID="Label2" runat="server" Text="Label">Common for same subjects: </asp:Label> <asp:CheckBox ID="same_sub" runat="server" />
+          </div>
+      
+     
+          <div class="mb-3">
+      <asp:Label ID="Label3" runat="server" Text="Label">subject code: </asp:Label> <asp:DropDownList ID="sub_code" runat="server"></asp:DropDownList>
+             </div>
+          <div class="mb-3">
+       <asp:Label ID="Label4" runat="server" Text="Label">subject name: </asp:Label> <asp:DropDownList ID="sub_name" runat="server"></asp:DropDownList>
+         </div>
+     
+      
+          <div class="mb-3">
+       <asp:Label ID="Label5" runat="server" Text="Label">Exam Date: </asp:Label> <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control datepicker_1"></asp:TextBox>
+            </div>
+          <div class="mb-3">
+         <asp:Label ID="Label6" runat="server" Text="Label">Starting Time: </asp:Label>  <asp:TextBox ID="start_Time" runat="server" placeholder="HH:mm"></asp:TextBox>
+            </div>
+        
+      
+          <div class="mb-3">
+       <asp:Label ID="Label7" runat="server" Text="Label">Ending Time: </asp:Label> <asp:TextBox ID="End_Time" runat="server" placeholder="HH:mm"></asp:TextBox>
+              </div>
+           <div class="mb-3">
+      <asp:Label ID="Label8" runat="server" Text="Label">Exam Duration: </asp:Label> <asp:TextBox ID="duration_txt" runat="server"></asp:TextBox>
+               </div>
+        
+      
+           <div class="mb-3">
+      <asp:Label ID="Label9" runat="server" Text="Label">Select sub category: </asp:Label> <asp:CheckBox ID="sub_category" runat="server" />
+             </div>
+           <div class="mb-3">
+      <asp:Label ID="Label10" runat="server" Text="Label">Is Lock: </asp:Label> <asp:CheckBox ID="is_lock" runat="server" />
+               </div>
+      
+      
+          <div class="mb-3">
+       <asp:Label ID="Label11" runat="server" Text="Label">Lock Date: </asp:Label> <asp:TextBox ID="lock_date" runat="server" CssClass="form-control datepicker_1"></asp:TextBox>
+              </div>
+          <div class="mb-3">
+      <asp:Label ID="Label12" runat="server" Text="Label">Min.Mark: </asp:Label> <asp:TextBox ID="min_mark" runat="server"></asp:TextBox>
+              </div>
+     
+      
+          <div class="mb-3">
+       <asp:Label ID="Label13" runat="server" Text="Label">Max.Mark: </asp:Label> <asp:TextBox ID="max_mark" runat="server"></asp:TextBox>
+              </div>
+          <div class="mb-3">
+      <asp:Label ID="Label14" runat="server" Text="Label">Visibility in part settings(For Staff Only): </asp:Label> <asp:CheckBox ID="visibilty" runat="server" />
+              </div>
+       <div class="btn-group mt-3 float-end" role="group">
+      <asp:Button ID="submitButton" runat="server" onclick="submitButton_Click"  Text="save" CssClass="btn btn-primary mt-3" />
+           <asp:Button ID="deleteButton" runat="server" Text="Delete" CssClass="btn btn-primary mt-3 ms-2" OnClick="deleteButton_Click"/>
+            </div>
+      
+      </div>
+
+</div>
+
+    </form>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/Scripts/bootstrap.js") %>
+    </asp:PlaceHolder>
+
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+   
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('#<%= start_Time.ClientID %>').timepicker({
+                timeFormat: "HH:mm",
+                interval: 15,
+                scrollbar: true
+
+            });
+
+            $('#<%= End_Time.ClientID %>').timepicker({
+                timeFormat: 'HH:mm',
+                interval: 15,
+                scrollbar: true
+            });
+
+            $(document).ready(function () {
+                $('.datepicker_1').datepicker({
+                    dateFormat: 'dd/mm/yy',  
+                    changeMonth: true,      
+                    changeYear: true        
+                    
+                });
+            });
+        });
+
+    </script>
+
+   
+
+    
+
+
+</body>
+</html>
